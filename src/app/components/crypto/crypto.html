@@ -1,1 +1,20 @@
-<p>crypto works!</p>
+<section class="crypto-container">
+
+  <div class="input-group">
+    <label for="input">Mensaje a ocultar:</label>
+    <textarea id="input" rows="5" placeholder="Escribe tu secreto aquí..." [(ngModel)]="inputText">
+    </textarea>
+  </div>
+
+  <div class="actions">
+    <button (click)="onEncrypt()">🔒 Encriptar</button>
+    <button (click)="clear()">🗑️ Limpiar</button>
+  </div>
+
+  <div class="input-group">
+    <label for="output">Resultado Cifrado:</label>
+    <textarea id="output" rows="5" readonly placeholder="Aquí aparecerán símbolos raros..." [value]="outputText">
+    </textarea>
+  </div>
+
+</section>
