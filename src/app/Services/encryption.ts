@@ -8,12 +8,19 @@ export class Encryption {
 
   // Es una matriz 4x4 fija. 
   private readonly KEY_MATRIX: number[][] = [
-    [3, 10, 20, 5],
-    [15, 2, 7, 9],
-    [1, 8, 11, 3],
-    [6, 4, 18, 21]
+    [15, 3, 7, 9],
+    [5, 6, 7, 8],
+    [9, 11, 12, 13],
+    [14, 15, 17, 18]
   ];
 
+
+  private readonly INVERSE_KEY_MATRIX: number[][] = [
+    [1, 254, 243, 237],
+    [0, 1, 251, 245],
+    [0, 0, 1, 249],
+    [0, 0, 0, 1]
+  ];
   constructor() { }
 
   encrypt(text: string): string {
@@ -59,5 +66,33 @@ export class Encryption {
     }
 
     return result;
+  }
+
+  decrypt(encryptedTextInBase64: string): string {
+    try {
+      // 1. Convertir de Base64 a símbolos ASCII (Inverso de btoa)
+      const rawText = atob(encryptedTextInBase64);
+
+      // 2. Convertir a vector de números
+      const vector = rawText.split('').map(char => char.charCodeAt(0));
+      let decryptedText = '';
+
+      // 3. Procesar de 4 en 4 usando la MATRIZ INVERSA
+      for (let i = 0; i < vector.length; i += 4) {
+        const row = [vector[i], vector[i + 1], vector[i + 2], vector[i + 3]];
+
+        // Usamos la misma lógica de multiplicación, pero con la inversa
+        const resultRow = this.multiplyRowByMatrix(row, this.INVERSE_KEY_MATRIX);
+
+        decryptedText += String.fromCharCode(...resultRow);
+      }
+
+      // 4. Limpiar los ceros (nulls) de relleno al final
+      return decryptedText.replace(/\0/g, '');
+
+    } catch (e) {
+      console.error('Error al desencriptar. Probablemente no sea Base64 válido.');
+      return 'Error: Texto inválido';
+    }
   }
 } 

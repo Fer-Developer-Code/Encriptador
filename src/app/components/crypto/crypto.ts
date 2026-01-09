@@ -16,12 +16,28 @@ export class Crypto {
   outputText: string = '';
 
   onEncrypt() {
-    if (!this.inputText) return; // Validación básica
+    if (!this.inputText) return;
 
-    // Llamamos al servicio con la matriz 4x4
-    this.outputText = this.encryptionService.encrypt(this.inputText);
+    // 1. Encriptamos (obtenemos símbolos ASCII raros)
+    const rawEncrypted = this.encryptionService.encrypt(this.inputText);
 
-    console.log('Texto cifrado (ASCII):', this.outputText);
+    // 2. Convertimos a Base64 para mostrar en pantalla
+    // btoa() es una función nativa de JS: "Binary to ASCII" (Base64)
+    this.outputText = btoa(rawEncrypted);
+
+    console.log('Cifrado (Base64):', this.outputText);
+  }
+
+  onDecrypt() {
+    if (!this.inputText) return;
+
+    // El servicio espera Base64 y devuelve el texto original
+    this.outputText = this.encryptionService.decrypt(this.inputText);
+  }
+
+  swapTexts() {
+    this.inputText = this.outputText; // Pasamos el resultado arriba
+    this.outputText = '';             // Limpiamos el resultado
   }
 
   // Método para limpiar (opcional, pero útil)

@@ -1,19 +1,24 @@
 <section class="crypto-container">
 
   <div class="input-group">
-    <label for="input">Mensaje a ocultar:</label>
-    <textarea id="input" rows="5" placeholder="Escribe tu secreto aquí..." [(ngModel)]="inputText">
+    <label for="input">Entrada:</label>
+    <textarea id="input" rows="5" placeholder="Ingresa texto normal o cifrado..." [(ngModel)]="inputText">
     </textarea>
   </div>
 
   <div class="actions">
     <button (click)="onEncrypt()">🔒 Encriptar</button>
-    <button (click)="clear()">🗑️ Limpiar</button>
+
+    <button (click)="onDecrypt()">🔓 Desencriptar</button>
+
+    <button (click)="swapTexts()" title="Mover resultado a entrada">⇅ Invertir</button>
+
+    <button (click)="clear()">🗑️</button>
   </div>
 
   <div class="input-group">
-    <label for="output">Resultado Cifrado:</label>
-    <textarea id="output" rows="5" readonly placeholder="Aquí aparecerán símbolos raros..." [value]="outputText">
+    <label for="output">Resultado:</label>
+    <textarea id="output" rows="5" readonly placeholder="El resultado aparecerá acá..." [value]="outputText">
     </textarea>
   </div>
 
