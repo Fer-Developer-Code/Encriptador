@@ -6,7 +6,7 @@ import { Footer } from "./components/footer/footer";
 import { FormsModule } from '@angular/forms';
 import { Historial } from "./historial/historial";
 import { Title, Meta } from '@angular/platform-browser';
-import { inject } from "@vercel/analytics"
+import { inject as vercelAnalytics } from '@vercel/analytics';
 
 @Component({
   selector: 'app-root',
@@ -15,10 +15,11 @@ import { inject } from "@vercel/analytics"
   styleUrl: './app.css'
 })
 export class App implements OnInit {
-
   constructor(private titleService: Title, private metaService: Meta) { }
 
   ngOnInit() {
+    vercelAnalytics(); 
+
     // Título de la pestaña y del buscador
     this.titleService.setTitle('Matrix Crypt - Encriptador de Cifrado de Hill');
 
