@@ -6,7 +6,7 @@ import { Footer } from "./components/footer/footer";
 import { FormsModule } from '@angular/forms';
 import { Historial } from "./historial/historial";
 import { Title, Meta } from '@angular/platform-browser';
-import { Analytics } from "@vercel/analytics/next";
+import { inject } from "@vercel/analytics"
 
 @Component({
   selector: 'app-root',
