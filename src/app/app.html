@@ -1,13 +1,15 @@
 <app-header></app-header>
 
-<main>
-  
+<main class="d-flex flex-column flex-grow-1">
+
   @defer (on viewport) {
-    <app-crypto></app-crypto>
+  <app-crypto class="d-flex flex-column flex-grow-1"></app-crypto>
   } @placeholder {
-    <div style="padding: 2rem; text-align: center;">
-      <p>Cargando encriptador...</p>
+  <div class="d-flex justify-content-center align-items-center flex-grow-1">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Cargando encriptador...</span>
     </div>
+  </div>
   }
 
 </main>

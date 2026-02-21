@@ -1,25 +1,61 @@
-<section class="crypto-container">
+<section class="container my-auto py-4 flex-grow-1 d-flex align-items-center">
+  <div class="row g-4 w-100 justify-content-center align-items-center">
 
-  <div class="input-group">
-    <label for="input">Entrada:</label>
-    <textarea id="input" rows="5" placeholder="Ingresa texto normal o cifrado..." [(ngModel)]="inputText">
-    </textarea>
+    <div class="col-12 col-lg-5">
+      <div class="card shadow-lg h-100 border-0 rounded-4">
+        <div class="card-header bg-transparent border-0 pt-4 pb-0 px-4">
+          <h5 class="fw-bold text-primary mb-0"><i class="bi bi-box-arrow-in-right"></i> Entrada</h5>
+        </div>
+        <div class="card-body p-4">
+          <textarea id="input" class="form-control bg-light border-0 rounded-3 font-monospace p-3 shadow-sm" rows="8" 
+                    placeholder="Ingresa texto normal o cifrado..." 
+                    [(ngModel)]="inputText" style="resize: none;"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-lg-2">
+      <div class="row g-3 d-lg-flex flex-lg-column justify-content-center align-items-center px-2">
+        
+        <div class="col-6 col-lg-12 d-grid">
+          <button class="btn btn-primary btn-lg shadow-sm fw-bold rounded-pill" (click)="onEncrypt()">
+            <i class="bi bi-lock-fill"></i> Cifrar
+          </button>
+        </div>
+
+        <div class="col-6 col-lg-12 d-grid">
+          <button class="btn btn-success btn-lg shadow-sm fw-bold rounded-pill" (click)="onDecrypt()">
+            <i class="bi bi-unlock-fill"></i> Decifrar
+          </button>
+        </div>
+
+        <div class="col-6 col-lg-12 d-grid mt-lg-4">
+          <button class="btn btn-outline-secondary shadow-sm fw-bold rounded-pill" (click)="swapTexts()" title="Mover resultado a entrada">
+            <i class="bi bi-arrow-down-up"></i> Invertir
+          </button>
+        </div>
+
+        <div class="col-6 col-lg-12 d-grid">
+          <button class="btn btn-outline-danger shadow-sm fw-bold rounded-pill" (click)="clear()">
+            <i class="bi bi-trash3-fill"></i> Limpiar
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="col-12 col-lg-5">
+      <div class="card shadow-lg h-100 border-0 rounded-4">
+        <div class="card-header bg-transparent border-0 pt-4 pb-0 px-4">
+          <h5 class="fw-bold text-success mb-0"><i class="bi bi-check2-square"></i> Resultado</h5>
+        </div>
+        <div class="card-body p-4">
+          <textarea id="output" class="form-control bg-light border-0 rounded-3 font-monospace p-3 shadow-sm" rows="8" readonly 
+                    placeholder="El resultado aparecerá acá..."
+                    [(ngModel)]="outputText" style="resize: none;"></textarea>
+        </div>
+      </div>
+    </div>
+
   </div>
-
-  <div class="actions">
-    <button (click)="onEncrypt()">🔒 Encriptar</button>
-
-    <button (click)="onDecrypt()">🔓 Desencriptar</button>
-
-    <button (click)="swapTexts()" title="Mover resultado a entrada">⇅ Invertir</button>
-
-    <button (click)="clear()">🗑️</button>
-  </div>
-
-  <div class="input-group">
-    <label for="output">Resultado:</label>
-    <textarea id="output" rows="5" readonly placeholder="El resultado aparecerá acá..."
-      [(ngModel)]="outputText"> </textarea>
-  </div>
-
 </section>

@@ -6,13 +6,13 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 ![Build Status](https://img.shields.io/badge/Status-Funcional-success)
 
-## 📋 Descripción
+##  Descripción
 
 Este proyecto es una aplicación web que permite cifrar y descifrar mensajes de texto utilizando matrices inversibles. A diferencia de los cifrados de sustitución simple, el **Cifrado de Hill** es un cifrado poligráfico basado en el álgebra lineal.
 
 El objetivo principal de este proyecto fue implementar la lógica matemática "desde cero" (Vanilla TypeScript) sin depender de librerías externas como `math.js`, demostrando un manejo sólido de algoritmos, estructuras de datos y tipado estricto.
 
-## 🚀 Funcionalidades Clave
+##  Funcionalidades Clave
 
 * **Encriptación Matricial:** Utiliza una matriz clave de $3 \times 3$ (escalable dinámicamente) para transformar vectores de texto.
 * **Aritmética Modular Personalizada:** Implementación de operaciones módulo 256 para manejar el set completo de caracteres ASCII extendido.
@@ -20,7 +20,7 @@ El objetivo principal de este proyecto fue implementar la lógica matemática "d
 * **Arquitectura SSR & Defer:** Uso de `@defer` de Angular 17 para optimizar la carga del componente criptográfico (Client-Side) sin bloquear el renderizado inicial del servidor (SSR).
 * **Diseño Mobile First:** Interfaz limpia y responsiva.
 
-## 🧠 Fundamento Matemático
+## Fundamento Matemático
 
 El núcleo del sistema trata el texto como una secuencia de vectores numéricos.
 
@@ -38,7 +38,7 @@ Para recuperar el mensaje, multiplicamos el vector cifrado por la **Matriz Inver
 
 $$P = (K^{-1} \cdot C) \pmod{256}$$
 
-## 🛠️ Desafío Técnico: Módulo de Negativos
+##  Desafío Técnico: Módulo de Negativos
 
 Durante el desarrollo, se resolvió un problema particular con el manejo de números negativos en JavaScript/TypeScript.
 El operador `%` en JS no se comporta como el operador módulo matemático para números negativos (ej: `-2 % 256` devuelve `-2`).
