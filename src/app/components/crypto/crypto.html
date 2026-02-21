@@ -1,4 +1,4 @@
-<section class="container my-auto py-4 flex-grow-1 d-flex align-items-center">
+<section class="container my-auto py-4 flex-grow-1 d-flex align-items-center justify-content-center">
   <div class="row g-4 w-100 justify-content-center align-items-center">
 
     <div class="col-12 col-lg-5">
@@ -7,16 +7,15 @@
           <h5 class="fw-bold text-primary mb-0"><i class="bi bi-box-arrow-in-right"></i> Entrada</h5>
         </div>
         <div class="card-body p-4">
-          <textarea id="input" class="form-control bg-light border-0 rounded-3 font-monospace p-3 shadow-sm" rows="8" 
-                    placeholder="Ingresa texto normal o cifrado..." 
-                    [(ngModel)]="inputText" style="resize: none;"></textarea>
+          <textarea id="input" class="form-control bg-light border-0 rounded-3 font-monospace p-3 shadow-sm" rows="8"
+            placeholder="Ingresa texto normal o cifrado..." [(ngModel)]="inputText" style="resize: none;"></textarea>
         </div>
       </div>
     </div>
 
     <div class="col-12 col-lg-2">
       <div class="row g-3 d-lg-flex flex-lg-column justify-content-center align-items-center px-2">
-        
+
         <div class="col-6 col-lg-12 d-grid">
           <button class="btn btn-primary btn-lg shadow-sm fw-bold rounded-pill" (click)="onEncrypt()">
             <i class="bi bi-lock-fill"></i> Cifrar
@@ -25,12 +24,13 @@
 
         <div class="col-6 col-lg-12 d-grid">
           <button class="btn btn-success btn-lg shadow-sm fw-bold rounded-pill" (click)="onDecrypt()">
-            <i class="bi bi-unlock-fill"></i> Decifrar
+            <i class="bi bi-unlock-fill"></i> Descifrar
           </button>
         </div>
 
         <div class="col-6 col-lg-12 d-grid mt-lg-4">
-          <button class="btn btn-outline-secondary shadow-sm fw-bold rounded-pill" (click)="swapTexts()" title="Mover resultado a entrada">
+          <button class="btn btn-outline-secondary shadow-sm fw-bold rounded-pill" (click)="swapTexts()"
+            title="Mover resultado a entrada">
             <i class="bi bi-arrow-down-up"></i> Invertir
           </button>
         </div>
@@ -50,9 +50,22 @@
           <h5 class="fw-bold text-success mb-0"><i class="bi bi-check2-square"></i> Resultado</h5>
         </div>
         <div class="card-body p-4">
-          <textarea id="output" class="form-control bg-light border-0 rounded-3 font-monospace p-3 shadow-sm" rows="8" readonly 
-                    placeholder="El resultado aparecerá acá..."
-                    [(ngModel)]="outputText" style="resize: none;"></textarea>
+          <textarea id="output" class="form-control bg-light border-0 rounded-3 font-monospace p-3 shadow-sm" rows="8"
+            readonly placeholder="El resultado aparecerá acá..." [(ngModel)]="outputText"
+            style="resize: none;"></textarea>
+          <div class="d-flex justify-content-center gap-2 mt-3">
+            <button class="btn btn-outline-primary btn-sm rounded-pill fw-bold" (click)="copyText()">
+              <i class="bi bi-clipboard"></i> Copiar
+            </button>
+            <button class="btn btn-outline-secondary btn-sm rounded-pill fw-bold" (click)="downloadText()">
+              <i class="bi bi-download"></i> Descargar texto
+            </button>
+          </div>
+          @if (textoCopiado) {
+          <div class="alert alert-success mt-3 py-2 text-center shadow-sm" role="alert">
+            ¡Texto copiado al portapapeles! 📋
+          </div>
+          }
         </div>
       </div>
     </div>
