@@ -4,10 +4,11 @@ import { Header } from "./components/header/header";
 import { Crypto } from "./components/crypto/crypto";
 import { Footer } from "./components/footer/footer";
 import { FormsModule } from '@angular/forms';
+import { Historial } from "./historial/historial";
 
 @Component({
   selector: 'app-root',
-  imports: [Header, Crypto, Footer, FormsModule],
+  imports: [Header, Crypto, Footer, FormsModule, Historial],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

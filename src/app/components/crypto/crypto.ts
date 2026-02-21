@@ -1,6 +1,7 @@
 import { Component, inject, ChangeDetectorRef } from '@angular/core';
 import { Encryption } from '../../Services/encryption';
 import { FormsModule } from '@angular/forms';
+import { HistorialService } from '../../Services/HistorialServices';
 
 @Component({
   selector: 'app-crypto',
@@ -10,8 +11,8 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './crypto.css',
 })
 export class Crypto {
-  private encryptionService = inject(Encryption);
-  constructor(private cdr: ChangeDetectorRef) { }
+
+  constructor(private cdr: ChangeDetectorRef, private historialService: HistorialService, private encryptionService: Encryption) { }
 
   textoCopiado: boolean = false;
   inputText: string = '';
@@ -21,11 +22,23 @@ export class Crypto {
   onEncrypt() {
     const resultadoCrudo = this.encryptionService.encrypt(this.inputText);
     this.outputText = btoa(resultadoCrudo);
+    this.historialService.agregarRegistro({
+      operacion: 'Encriptar',
+      textoEntrada: this.inputText,
+      textoSalida: this.outputText,
+      fecha: new Date()
+    });
   }
 
   onDecrypt() {
     if (!this.inputText) return;
     this.outputText = this.encryptionService.decrypt(this.inputText);
+    this.historialService.agregarRegistro({
+      operacion: 'Desencriptar',
+      textoEntrada: this.inputText,
+      textoSalida: this.outputText,
+      fecha: new Date()
+    });
   }
 
   swapTexts() {

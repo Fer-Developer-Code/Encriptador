@@ -1,0 +1,47 @@
+<div class="offcanvas offcanvas-end shadow-lg" tabindex="-1" id="panelHistorial" aria-labelledby="panelHistorialLabel">
+
+    <div class="offcanvas-header bg-dark text-white border-bottom border-primary border-3">
+        <h5 class="offcanvas-title fw-bold" id="panelHistorialLabel"><i class="bi bi-clock-history"></i> Historial de
+            Sesión</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+
+    <div class="offcanvas-body bg-light p-0">
+        <div class="list-group list-group-flush">
+
+            @for (registro of historialService.registros; track registro.fecha) {
+            <div class="list-group-item list-group-item-action p-3 border-bottom">
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="badge rounded-pill fs-6" [class.text-bg-primary]="registro.operacion === 'Encriptar'"
+                        [class.text-bg-success]="registro.operacion === 'Desencriptar'">
+                        {{ registro.operacion }}
+                    </span>
+                    <small class="text-muted fw-bold">{{ registro.fecha | date:'shortTime' }}</small>
+                </div>
+
+                <div class="mb-2">
+                    <small class="text-muted d-block text-uppercase fw-bold" style="font-size: 0.7rem;">Entrada</small>
+                    <div class="font-monospace text-truncate bg-white border rounded p-2 small shadow-sm">
+                        {{ registro.textoEntrada }}
+                    </div>
+                </div>
+
+                <div>
+                    <small class="text-muted d-block text-uppercase fw-bold" style="font-size: 0.7rem;">Salida</small>
+                    <div class="font-monospace text-truncate bg-white border rounded p-2 small shadow-sm">
+                        {{ registro.textoSalida }}
+                    </div>
+                </div>
+
+            </div>
+            } @empty {
+            <div class="text-center p-5 text-muted mt-5">
+                <i class="bi bi-inbox fs-1 d-block mb-3 text-secondary"></i>
+                <p class="fs-5">Aún no hay conversiones en esta sesión.</p>
+            </div>
+            }
+
+        </div>
+    </div>
+</div>
