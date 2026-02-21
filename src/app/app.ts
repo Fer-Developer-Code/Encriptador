@@ -1,4 +1,5 @@
-import { Component, signal, OnInit } from '@angular/core';
+import { Component, signal, OnInit, PLATFORM_ID, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { Header } from "./components/header/header";
 import { Crypto } from "./components/crypto/crypto";
@@ -6,7 +7,7 @@ import { Footer } from "./components/footer/footer";
 import { FormsModule } from '@angular/forms';
 import { Historial } from "./historial/historial";
 import { Title, Meta } from '@angular/platform-browser';
-import { inject as vercelAnalytics } from '@vercel/analytics';
+import { inject as injectVercelAnalytics } from '@vercel/analytics';
 
 @Component({
   selector: 'app-root',
@@ -15,10 +16,15 @@ import { inject as vercelAnalytics } from '@vercel/analytics';
   styleUrl: './app.css'
 })
 export class App implements OnInit {
+  private platformId = inject(PLATFORM_ID);
+
   constructor(private titleService: Title, private metaService: Meta) { }
 
   ngOnInit() {
-    vercelAnalytics(); 
+    // Only inject Vercel Analytics on the client side
+    if (isPlatformBrowser(this.platformId)) {
+      injectVercelAnalytics();
+    } 
 
     // Título de la pestaña y del buscador
     this.titleService.setTitle('Matrix Crypt - Encriptador de Cifrado de Hill');
