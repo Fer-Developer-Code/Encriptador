@@ -50,7 +50,7 @@ Clave (Key):                 Inversa Calculada (Inverse Key):
 [  1, -2,  0 ]               [  1,  2,  2 ]
 [  1,  0,  1 ]               [  0,  1,  1 ]
 [ -1,  1, -1 ]               [ -1, -1, -2 ]
-
+```
 ### Desafío Técnico: Módulo de Negativos en JavaScript
 Durante el desarrollo del algoritmo, surgió una particularidad con el manejo de números negativos en JavaScript/TypeScript. El operador % nativo calcula el resto, no el módulo matemático estricto (ej: -2 % 256 devuelve -2, cuando en criptografía necesitamos el equivalente positivo 254).
 
