@@ -28,7 +28,8 @@ export class App implements OnInit {
       { name: 'description', content: 'Herramienta online gratuita para encriptar y desencriptar textos utilizando el algoritmo matemático del Cifrado de Hill con matrices.' },
       { name: 'keywords', content: 'encriptador, cifrado de hill, criptografía, angular, matrices, seguridad' },
       { name: 'author', content: 'Fer' },
-      { name: 'robots', content: 'index, follow' } 
+      { name: 'robots', content: 'index, follow' },
+ { name: 'google-site-verification', content: 'a5B8PWHGA0wnAiJvjOqFtjhDo5PFhFsw_6UF8qisttk'}
     ]);
 
     this.metaService.addTags([
