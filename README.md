@@ -1,62 +1,52 @@
-# MatrixCrypt: Encriptador de Hill (Angular + TypeScript)
+# Matrix Crypt: Encriptador de Hill
 
-> Una implementación interactiva del Cifrado de Hill utilizando álgebra lineal y aritmética modular, construida con **Angular 17+**.
+> Una implementación interactiva del Cifrado de Hill utilizando álgebra lineal y aritmética modular, construida desde cero con **Angular 17+** y **TypeScript**.
 
-![Angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-![Build Status](https://img.shields.io/badge/Status-Funcional-success)
+[![Angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white)](https://angular.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap_5-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
+[![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
+
+ **Prueba la aplicación en vivo:** [Matrix Crypt en Vercel]([https://encriptador-silk.vercel.app/])
+
 
 ##  Descripción
 
-Este proyecto es una aplicación web que permite cifrar y descifrar mensajes de texto utilizando matrices inversibles. A diferencia de los cifrados de sustitución simple, el **Cifrado de Hill** es un cifrado poligráfico basado en el álgebra lineal.
+Este proyecto es una aplicación web responsiva que permite cifrar y descifrar mensajes de texto utilizando matrices inversibles. A diferencia de los cifrados de sustitución simple, el **Cifrado de Hill** es un cifrado poligráfico basado en el álgebra lineal.
 
-El objetivo principal de este proyecto fue implementar la lógica matemática "desde cero" (Vanilla TypeScript) sin depender de librerías externas como `math.js`, demostrando un manejo sólido de algoritmos, estructuras de datos y tipado estricto.
+El objetivo principal de este proyecto fue implementar la lógica matemática "desde cero" (Vanilla TypeScript) sin depender de librerías externas de cálculo, demostrando un manejo sólido de algoritmos, estructuras de datos y tipado estricto, acompañado de una interfaz moderna.
 
-##  Funcionalidades Clave
+## Funcionalidades Clave
 
-* **Encriptación Matricial:** Utiliza una matriz clave de $3 \times 3$ (escalable dinámicamente) para transformar vectores de texto.
-* **Aritmética Modular Personalizada:** Implementación de operaciones módulo 256 para manejar el set completo de caracteres ASCII extendido.
-* **Salida en Base64:** Conversión automática del resultado binario a Base64 para garantizar que el texto cifrado sea legible y transportable.
-* **Arquitectura SSR & Defer:** Uso de `@defer` de Angular 17 para optimizar la carga del componente criptográfico (Client-Side) sin bloquear el renderizado inicial del servidor (SSR).
-* **Diseño Mobile First:** Interfaz limpia y responsiva.
+* **Motor Criptográfico Propio:** Encriptación matricial utilizando una clave de $3 \times 3$ para transformar vectores de texto, con soporte para el set de caracteres ASCII extendido mediante aritmética modular base 256.
+* **Codificación Segura:** Salida automática en Base64 para garantizar que el texto cifrado sea legible, transportable y no pierda caracteres especiales.
+* **Historial de Sesión:** Implementación de un panel lateral (Offcanvas) para registrar y revisar las conversiones realizadas durante la sesión en tiempo real.
+* **Herramientas de Usuario:** Integración con la API del Portapapeles (`Clipboard API`) y generación de archivos `.txt` mediante `Blob` para descargar resultados sin servidor.
+* **Arquitectura y Rendimiento:** Uso de bloques `@defer` de Angular para optimización de carga (Lazy Loading) y Server-Side Rendering (SSR) con etiquetas meta dinámicas para SEO.
+* **Diseño Mobile-First:** Interfaz construida con Bootstrap 5, completamente adaptable a dispositivos móviles.
 
 ## Fundamento Matemático
 
-El núcleo del sistema trata el texto como una secuencia de vectores numéricos.
+El núcleo del sistema trata el texto como una secuencia de vectores numéricos. El texto plano se convierte a sus valores numéricos y se agrupa en vectores de tamaño $n$ (donde $n$ es la dimensión de la matriz).
 
 ### 1. Cifrado
-El texto plano se convierte a sus valores ASCII y se agrupa en vectores de tamaño $n$ (donde $n$ es la dimensión de la matriz).
+Para cifrar, multiplicamos la Matriz Clave por el vector del texto plano y aplicamos el módulo:
 
 $$C = (K \cdot P) \pmod{256}$$
 
-* $K$: Matriz Clave (Debe ser invertible en mod 256).
+* $K$: Matriz Clave (Invertible en módulo 256).
 * $P$: Vector del texto plano.
 * $C$: Vector del texto cifrado resultante.
 
 ### 2. Descifrado
-Para recuperar el mensaje, multiplicamos el vector cifrado por la **Matriz Inversa Modular** de la clave.
+Para recuperar el mensaje original, multiplicamos el vector cifrado por la **Matriz Inversa Modular** de la clave:
 
 $$P = (K^{-1} \cdot C) \pmod{256}$$
 
-##  Desafío Técnico: Módulo de Negativos
+### Matrices utilizadas en el proyecto
 
-Durante el desarrollo, se resolvió un problema particular con el manejo de números negativos en JavaScript/TypeScript.
-El operador `%` en JS no se comporta como el operador módulo matemático para números negativos (ej: `-2 % 256` devuelve `-2`).
-
-**Solución implementada:**
-Se aplicó una fórmula de corrección para garantizar residuos positivos necesarios para la criptografía:
-
-```typescript
-
-result[j] = ((sum % MOD) + MOD) % MOD;
-
-## Matriz utilizada en el proyecto:
-// Clave (Key)
-[ 1, -2,  0]
-[ 1,  0,  1]
-[-1,  1, -1]
-
-// Inversa Calculada (Inverse Key)
-[ 1,  2,  2]
-[ 0,  1,  1]
-[-1, -1, -2]
+```text
+Clave (Key):                 Inversa Calculada (Inverse Key):
+[  1, -2,  0 ]               [  1,  2,  2 ]
+[  1,  0,  1 ]               [  0,  1,  1 ]
+[ -1,  1, -1 ]               [ -1, -1, -2 ]
