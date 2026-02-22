@@ -7,7 +7,7 @@
 [![Bootstrap](https://img.shields.io/badge/Bootstrap_5-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
 [![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
 
- **Prueba la aplicación en vivo:** [Matrix Crypt en Vercel]([https://encriptador-silk.vercel.app/])
+ **Prueba la aplicación en vivo:** [Matrix Crypt en Vercel](https://encriptador-silk.vercel.app/)
 
 
 ##  Descripción
@@ -50,3 +50,24 @@ Clave (Key):                 Inversa Calculada (Inverse Key):
 [  1, -2,  0 ]               [  1,  2,  2 ]
 [  1,  0,  1 ]               [  0,  1,  1 ]
 [ -1,  1, -1 ]               [ -1, -1, -2 ]
+
+### Desafío Técnico: Módulo de Negativos en JavaScript
+Durante el desarrollo del algoritmo, surgió una particularidad con el manejo de números negativos en JavaScript/TypeScript. El operador % nativo calcula el resto, no el módulo matemático estricto (ej: -2 % 256 devuelve -2, cuando en criptografía necesitamos el equivalente positivo 254).
+
+Solución implementada:
+Se diseñó una fórmula de corrección algebraica para garantizar residuos siempre positivos, asegurando la integridad del cifrado y descifrado:
+
+TypeScript
+
+result[j] = ((sum % MOD) + MOD) % MOD;
+
+## Instalación Local
+Si deseas correr este proyecto en tu entorno local:
+
+Clona el repositorio: git clone https://github.com/Fer-Developer-Code/Encriptador.git
+
+Instala las dependencias: npm install
+
+Inicia el servidor de desarrollo: npm start o ng serve
+
+Abre http://localhost:4200 en tu navegador.
