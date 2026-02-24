@@ -1,14 +1,16 @@
 <div class="offcanvas offcanvas-end shadow-lg" tabindex="-1" id="panelHistorial" aria-labelledby="panelHistorialLabel">
 
     <div class="offcanvas-header bg-dark text-white border-bottom border-primary border-3">
-        <h5 class="offcanvas-title fw-bold" id="panelHistorialLabel"><i class="bi bi-clock-history"></i> Historial</h5>
+        <h5 class="offcanvas-title fw-bold" id="panelHistorialLabel"><i class="bi bi-clock-history"></i> {{
+            'history.title' | translate }}</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
 
     @if (historialService.registros.length > 0) {
     <div class="p-2 bg-white border-bottom text-end shadow-sm">
-        <button class="btn btn-sm btn-outline-danger shadow-sm rounded-pill px-3" (click)="vaciar()" title="Borrar todo el historial">
-            <i class="bi bi-trash pe-1"></i> Vaciar Historial
+        <button class="btn btn-sm btn-outline-danger shadow-sm rounded-pill px-3" (click)="vaciar()"
+            [title]="'history.clearAll' | translate">
+            <i class="bi bi-trash pe-1"></i> {{ 'history.clearAll' | translate }}
         </button>
     </div>
     }
@@ -18,28 +20,32 @@
 
             @for (registro of historialService.registros; track registro.fecha; let i = $index) {
             <div class="list-group-item list-group-item-action p-3 border-bottom position-relative">
-                
-                <button class="btn btn-sm text-danger position-absolute top-0 end-0 mt-2 me-2 p-1 lh-1" (click)="eliminar(i)" title="Eliminar este registro">
+
+                <button class="btn btn-sm text-danger position-absolute top-0 end-0 mt-2 me-2 p-1 lh-1"
+                    (click)="eliminar(i)" [title]="'history.deleteItem' | translate">
                     <i class="bi bi-x-circle-fill fs-5"></i>
                 </button>
 
                 <div class="d-flex justify-content-between align-items-center mb-3 pe-4">
                     <span class="badge rounded-pill fs-6" [class.text-bg-primary]="registro.operacion === 'Encriptar'"
                         [class.text-bg-success]="registro.operacion === 'Desencriptar'">
-                        {{ registro.operacion }}
+                        {{ (registro.operacion === 'Encriptar' ? 'crypto.buttons.encrypt' : 'crypto.buttons.decrypt') |
+                        translate }}
                     </span>
                     <small class="text-muted fw-bold">{{ registro.fecha | date:'shortTime' }}</small>
                 </div>
 
                 <div class="mb-2">
-                    <small class="text-muted d-block text-uppercase fw-bold" style="font-size: 0.7rem;">Entrada</small>
+                    <small class="text-muted d-block text-uppercase fw-bold" style="font-size: 0.7rem;">{{
+                        'history.labels.input' | translate }}</small>
                     <div class="font-monospace text-truncate bg-white border rounded p-2 small shadow-sm">
                         {{ registro.textoEntrada }}
                     </div>
                 </div>
 
                 <div>
-                    <small class="text-muted d-block text-uppercase fw-bold" style="font-size: 0.7rem;">Salida</small>
+                    <small class="text-muted d-block text-uppercase fw-bold" style="font-size: 0.7rem;">{{
+                        'history.labels.output' | translate }}</small>
                     <div class="font-monospace text-truncate bg-white border rounded p-2 small shadow-sm">
                         {{ registro.textoSalida }}
                     </div>
@@ -49,7 +55,7 @@
             } @empty {
             <div class="text-center p-5 text-muted mt-5">
                 <i class="bi bi-inbox fs-1 d-block mb-3 text-secondary"></i>
-                <p class="fs-5">Aún no hay conversiones en esta sesión.</p>
+                <p class="fs-5">{{ 'history.empty' | translate }}</p>
             </div>
             }
 

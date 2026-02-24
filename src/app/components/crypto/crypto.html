@@ -4,11 +4,13 @@
     <div class="col-12 col-lg-5">
       <div class="card shadow-lg h-100 border-0 rounded-4">
         <div class="card-header bg-transparent border-0 pt-4 pb-0 px-4">
-          <h5 class="fw-bold text-primary mb-0"><i class="bi bi-box-arrow-in-right"></i> Entrada</h5>
+          <h5 class="fw-bold text-primary mb-0"><i class="bi bi-box-arrow-in-right"></i> {{ 'crypto.input.title' |
+            translate }}</h5>
         </div>
         <div class="card-body p-4">
           <textarea id="input" class="form-control bg-light border-0 rounded-3 font-monospace p-3 shadow-sm" rows="8"
-            placeholder="Ingresa texto normal o cifrado..." [(ngModel)]="inputText" style="resize: none;"></textarea>
+            [placeholder]="'crypto.input.placeholder' | translate" [(ngModel)]="inputText"
+            style="resize: none;"></textarea>
         </div>
       </div>
     </div>
@@ -18,26 +20,26 @@
 
         <div class="col-6 col-lg-12 d-grid">
           <button class="btn btn-primary btn-lg shadow-sm fw-bold rounded-pill" (click)="onEncrypt()">
-            <i class="bi bi-lock-fill"></i> Cifrar
+            <i class="bi bi-lock-fill"></i> {{ 'crypto.buttons.encrypt' | translate }}
           </button>
         </div>
 
         <div class="col-6 col-lg-12 d-grid">
           <button class="btn btn-success btn-lg shadow-sm fw-bold rounded-pill" (click)="onDecrypt()">
-            <i class="bi bi-unlock-fill"></i> Descifrar
+            <i class="bi bi-unlock-fill"></i> {{ 'crypto.buttons.decrypt' | translate }}
           </button>
         </div>
 
         <div class="col-6 col-lg-12 d-grid mt-lg-4">
           <button class="btn btn-outline-secondary shadow-sm fw-bold rounded-pill" (click)="swapTexts()"
-            title="Mover resultado a entrada">
-            <i class="bi bi-arrow-down-up"></i> Invertir
+            [title]="'crypto.buttons.swap' | translate">
+            <i class="bi bi-arrow-down-up"></i> {{ 'crypto.buttons.swap' | translate }}
           </button>
         </div>
 
         <div class="col-6 col-lg-12 d-grid">
           <button class="btn btn-outline-danger shadow-sm fw-bold rounded-pill" (click)="clear()">
-            <i class="bi bi-trash3-fill"></i> Limpiar
+            <i class="bi bi-trash3-fill"></i> {{ 'crypto.buttons.clear' | translate }}
           </button>
         </div>
 
@@ -47,23 +49,24 @@
     <div class="col-12 col-lg-5">
       <div class="card shadow-lg h-100 border-0 rounded-4">
         <div class="card-header bg-transparent border-0 pt-4 pb-0 px-4">
-          <h5 class="fw-bold text-success mb-0"><i class="bi bi-check2-square"></i> Resultado</h5>
+          <h5 class="fw-bold text-success mb-0"><i class="bi bi-check2-square"></i> {{ 'crypto.output.title' | translate
+            }}</h5>
         </div>
         <div class="card-body p-4">
           <textarea id="output" class="form-control bg-light border-0 rounded-3 font-monospace p-3 shadow-sm" rows="8"
-            readonly placeholder="El resultado aparecerá acá..." [(ngModel)]="outputText"
+            readonly [placeholder]="'crypto.output.placeholder' | translate" [(ngModel)]="outputText"
             style="resize: none;"></textarea>
           <div class="d-flex justify-content-center gap-2 mt-3">
             <button class="btn btn-outline-primary btn-sm rounded-pill fw-bold" (click)="copyText()">
-              <i class="bi bi-clipboard"></i> Copiar
+              <i class="bi bi-clipboard"></i> {{ 'crypto.buttons.copy' | translate }}
             </button>
             <button class="btn btn-outline-secondary btn-sm rounded-pill fw-bold" (click)="downloadText()">
-              <i class="bi bi-download"></i> Descargar texto
+              <i class="bi bi-download"></i> {{ 'crypto.buttons.download' | translate }}
             </button>
           </div>
           @if (textoCopiado) {
           <div class="alert alert-success mt-3 py-2 text-center shadow-sm" role="alert">
-            ¡Texto copiado al portapapeles! 📋
+            {{ 'crypto.alerts.copied' | translate }}
           </div>
           }
         </div>

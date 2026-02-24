@@ -1,4 +1,5 @@
-import { Component, inject, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
+import { TranslatePipe } from '../../pipes/translate.pipe';
 import { Encryption } from '../../Services/encryption';
 import { FormsModule } from '@angular/forms';
 import { HistorialService } from '../../Services/HistorialServices';
@@ -6,7 +7,7 @@ import { HistorialService } from '../../Services/HistorialServices';
 @Component({
   selector: 'app-crypto',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, TranslatePipe],
   templateUrl: './crypto.html',
   styleUrl: './crypto.css',
 })

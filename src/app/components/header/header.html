@@ -3,13 +3,38 @@
 
     <div class="d-flex flex-column text-start">
       <h1 class="navbar-brand mb-0 fs-3 fs-md-2 fw-bold"><i class="bi bi-cpu"></i> Matrix Crypt</h1>
-      <span class="text-white-50 fs-6 d-none d-sm-block">Encriptador de Cifrado de Hill</span>
+      <span class="text-white-50 fs-6 d-none d-sm-block">{{ 'header.subtitle' | translate }}</span>
     </div>
 
-    <button class="btn btn-outline-light rounded-pill px-3 shadow-sm" type="button" data-bs-toggle="offcanvas"
-      data-bs-target="#panelHistorial" aria-controls="panelHistorial">
-      <i class="bi bi-clock-history"></i>
-      <span class="d-none d-md-inline ms-1 fw-bold">Historial</span>
-    </button>
+    <div class="d-flex gap-2">
+      <!-- Selector de Idioma -->
+      <div class="dropdown">
+        <button class="btn btn-outline-light rounded-pill px-3 shadow-sm dropdown-toggle" type="button"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-globe"></i>
+          <span class="d-none d-md-inline ms-1 fw-bold">{{ ('languages.' + translationService.currentLang()) | translate
+            }}</span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end shadow">
+          <li>
+            <button class="dropdown-item d-flex align-items-center gap-2" (click)="changeLanguage('es')">
+              <span>🇪🇸</span> {{ 'languages.es' | translate }}
+            </button>
+          </li>
+          <li>
+            <button class="dropdown-item d-flex align-items-center gap-2" (click)="changeLanguage('en')">
+              <span>🇺🇸</span> {{ 'languages.en' | translate }}
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Botón Historial -->
+      <button class="btn btn-outline-light rounded-pill px-3 shadow-sm" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#panelHistorial" aria-controls="panelHistorial">
+        <i class="bi bi-clock-history"></i>
+        <span class="d-none d-md-inline ms-1 fw-bold">{{ 'header.history' | translate }}</span>
+      </button>
+    </div>
   </div>
 </header>
