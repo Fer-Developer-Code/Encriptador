@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { HistorialService } from '../Services/HistorialServices';
+import { HistorialService } from '../../Services/HistorialServices';
 import { DatePipe } from '@angular/common';
-import { TranslatePipe } from '../pipes/translate.pipe';
+import { TranslatePipe } from '../../pipes/translate.pipe';
 
 @Component({
   selector: 'app-historial',

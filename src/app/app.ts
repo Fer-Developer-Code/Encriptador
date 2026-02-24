@@ -4,7 +4,7 @@ import { Header } from "./components/header/header";
 import { Crypto } from "./components/crypto/crypto";
 import { Footer } from "./components/footer/footer";
 import { FormsModule } from '@angular/forms';
-import { Historial } from "./historial/historial";
+import { Historial } from "./components/historial/historial";
 import { TranslationService } from './Services/translation.service';
 import { Title, Meta } from '@angular/platform-browser';
 import { inject as vercelAnalytics } from '@vercel/analytics';
