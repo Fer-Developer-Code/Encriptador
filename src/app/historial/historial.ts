@@ -10,4 +10,12 @@ import { DatePipe } from '@angular/common';
 })
 export class Historial {
   constructor(public historialService: HistorialService) { }
+
+  eliminar(index: number) {
+    this.historialService.eliminarRegistro(index);
+  }
+
+  vaciar() {
+    this.historialService.vaciarHistorial();
+  }
 }
